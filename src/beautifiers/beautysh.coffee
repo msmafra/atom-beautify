@@ -32,8 +32,8 @@ module.exports = class BashBeautify extends Beautifier
     file = @tempFile("input", text)
     tabs = options.indent_with_tabs
     if tabs is true
-      beautysh.run([ '-t', '-f', file ])
+      beautysh.run([ '--tab', '--backup', file ])
         .then(=> @readFile file)
     else
-      beautysh.run([ '-i', options.indent_size, '-f', file ])
+      beautysh.run([ '--indent-size', options.indent_size, '--backup', file ])
         .then(=> @readFile file)
